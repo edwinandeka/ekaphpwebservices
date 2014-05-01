@@ -10,16 +10,10 @@
 * version actual V.2.0 
 */
 
-<<<<<<< HEAD
 define('DB_HOST', 'localhostmysql');
 define('DB_USER', 'usermysql');
 define('DB_PASS', 'passwordmysql');
 define('DB_NAME', 'namedatabase');
-=======
-define('DB_HOST', 'localhost');
-define('DB_USER', 'root');
-define('DB_PASS', '');
-define('DB_NAME', 'tuluaventas');
->>>>>>> 982bb639b2870569c44442995e101d460517037a
+
 define('DB_CHARSET', 'utf8');
 ?>
