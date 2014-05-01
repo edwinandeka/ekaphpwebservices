@@ -1,0 +1,2 @@
+<?php
+ class Session{function __construct(){}public static function set($a,$b){if(!session_id())@session_start();$_SESSION[$a]=$b;}public static function get($a){if(!session_id())@session_start();if(isset($_SESSION[$a])){return $_SESSION[$a];}else{return"no existe la key de session: $a";}}public static function valueFor($a){if(!session_id())@session_start();if(isset($_SESSION[$a])){return true;}else{return false;}}public static function delete($a){if(!session_id())@session_start();if(isset($_SESSION[$a])){unset($_SESSION[$a]);}}}?>

@@ -1,0 +1,2 @@
+<?php
+ class Post{function __construct(){}public static function input($a){if(isset($_POST[$a])){return $_POST[$a];}else{return null;}}public static function isKey($a){if(isset($_POST[$a])){return true;}else{return false;}}public static function delete(){$_POST=array();}}?>

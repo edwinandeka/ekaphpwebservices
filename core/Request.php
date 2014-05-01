@@ -1,0 +1,2 @@
+<?php
+ class Request{private $a;private $b;private $c;function __construct($d){$d=explode("/",$d);$d=array_filter($d);$e->_webservice=array_shift($d);$e->_action=array_shift($d);$e->_params=$d;if(!$e->_action)$e->_action="index";if(!isset($e->_params))$e->_params=array();}public function getWebService(){return $e->_webservice;}public function getAction(){return $e->_action;}public function getParams(){return $e->_params;}}?>

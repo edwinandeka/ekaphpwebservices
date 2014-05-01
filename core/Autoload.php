@@ -1,0 +1,2 @@
+<?php
+ function loadCore($a){$b=CORE_PATH.ucfirst(strtolower($a)).".php";if(file_exists($b)){include_once $b;}}function loadModels($a){$b=MODELS_PATH.strtolower($a).".php";if(file_exists($b)){include_once $b;}}spl_autoload_register('loadCore');spl_autoload_register('loadModels');?>
