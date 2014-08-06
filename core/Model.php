@@ -1,2 +1,165 @@
 <?php
- class Model{function __construct(){}public static function create($a,$b=""){$c=Post::input($a);$a=ucfirst(strtolower($a));$d=get_class_vars($a);$a=new $a;$e=0;foreach($d as $f=>$g){if($e>0)if(isset($c[$f]))$a->$f=$c[$f];$e++;}if($b!="")$a->id=$b;return $a;}public static function save($a){$d=get_class_vars(get_class($a));$h=get_class($a);$h=strtolower($h);$j="INSERT INTO $h (";$e=0;foreach($d as $f=>$g){$j.="`$f`";if($e<count($d)-1)$j.=", ";$e++;}$j.=") VALUES  (";$e=0;foreach($d as $f=>$g){if($e==0)$j.="NULL,";if($e>0){if(is_int($a->$f))$j.=$a->$f;else if(gettype($a->$f)=="object")$j.=$a->$f->id;else $j.="'".$a->$f."'";if($e<count($d)-1)$j.=", ";}$e++;}$j.=")";$k=Database::getIntance();if($k->exec($j)!==false){$a->id=$k->lastInsertId();return true;}else{return false;}}public static function update($a){$d=get_class_vars(get_class($a));$h=get_class($a);$h=strtolower($h);$j="update $h set ";$e=0;foreach($d as $f=>$g){if($e>0){if(is_int($a->$f)){$j.="$f = $a -> $f";}else{$j.="$f ='".$a->$f."'";}if($e<count($d)-1){$j.=", ";}}$e++;}$j.=" where id= ".$a->id;$k=Database::getIntance();if($k->exec($j)!=false){return true;}else{return false;}}public static function delete($a){$d=get_class_vars(get_class($a));$h=get_class($a);$h=strtolower($h);$j="delete FROM  $h  where id= ".$a->id;$k=Database::getIntance();if($k->exec($j)!==false){return true;}else{return false;}}}?>
+
+/*
+ * @file  : class Model
+ *
+ * @autor : edwin_eka
+ * @emal  : edwinandeka@gmail.com
+ *
+ * version 1.0
+ *
+ * fecha: 02 de enero de 2014
+ *
+ */
+
+class Model {
+
+	function __construct() {
+	}
+
+	public static function create($model, $id = "") {
+
+		$post = Post::input($model);
+
+		$model = ucfirst(strtolower($model));
+		$vars_clase = get_class_vars($model);
+
+		$model = new $model;
+
+		$i = 0;
+
+		foreach ($vars_clase as $attr => $value) {
+			if ($i > 0) 
+				if (isset($post[$attr])) 
+					$model -> $attr = $post[$attr];
+			$i++;
+		}
+
+		if ($id != "") 
+			$model -> id = $id;
+		
+
+		return $model;
+	}
+
+	/**
+	 * recibe un objeto de modelo y lo guarda en la base de datos
+	 */
+	public static function save($model) {
+
+		$vars_clase = get_class_vars(get_class($model));
+
+		$table = get_class($model);
+		$table = strtolower($table);
+		$sql = "INSERT INTO $table (";
+
+		$i = 0;
+		foreach ($vars_clase as $attr => $value) {
+			$sql .= "`$attr`";
+
+			if ($i < count($vars_clase) - 1) 
+				$sql .= ", ";
+			$i++;
+		}
+
+		$sql .= ") VALUES  (";
+
+		$i = 0;
+		foreach ($vars_clase as $attr => $value) {
+			if ($i == 0) 
+				$sql .= "NULL,";
+
+			if ($i > 0) {
+				if (is_int($model -> $attr)) 
+					$sql .= $model -> $attr;
+				else if(gettype($model -> $attr)=="object")
+					$sql .= $model -> $attr -> id ;
+				else
+					$sql .= "'" . $model -> $attr . "'";
+				
+				if ($i < count($vars_clase) - 1) 
+					$sql .= ", ";
+			}
+			$i++;
+
+		}
+		$sql .= ")";
+		//echo $sql;
+
+		$_database = Database::getIntance();
+
+		if ($_database -> exec($sql) !== false) {
+			$model -> id = $_database -> lastInsertId();
+			return true;
+		} else {
+			return false;
+		}
+
+	}
+
+	/**
+	 * recibe un objeto de modelo y lo edita en la base de datos
+	 */
+	public static function update($model) {
+
+		$vars_clase = get_class_vars(get_class($model));
+
+		$table = get_class($model);
+		$table = strtolower($table);
+		$sql = "update $table set ";
+
+		$i = 0;
+		foreach ($vars_clase as $attr => $value) {
+
+			if ($i > 0) {
+
+				if (is_int($model -> $attr)) {
+					$sql .= "$attr = $model -> $attr";
+				} else {
+					$sql .= "$attr ='" . $model -> $attr . "'";
+				}
+
+				if ($i < count($vars_clase) - 1) {
+
+					$sql .= ", ";
+				}
+			}
+			$i++;
+		}
+
+		$sql .= " where id= " . $model -> id;
+
+		$_database = Database::getIntance();
+
+		if ($_database -> exec($sql) != false) {
+			return true;
+		} else {
+			return false;
+		}
+
+	}
+
+	/**
+	 * recibe un objeto de modelo y lo borra en la base de datos
+	 */
+	public static function delete($model) {
+
+		$vars_clase = get_class_vars(get_class($model));
+
+		$table = get_class($model);
+		$table = strtolower($table);
+
+		$sql = "delete FROM  $table  where id= " . $model -> id;
+
+		$_database = Database::getIntance();
+
+		if ($_database -> exec($sql) !== false) {
+			return true;
+		} else {
+			return false;
+		}
+
+	}
+
+}
+?>

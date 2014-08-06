@@ -1,2 +1,56 @@
 <?php
- class Session{function __construct(){}public static function set($a,$b){if(!session_id())@session_start();$_SESSION[$a]=$b;}public static function get($a){if(!session_id())@session_start();if(isset($_SESSION[$a])){return $_SESSION[$a];}else{return"no existe la key de session: $a";}}public static function valueFor($a){if(!session_id())@session_start();if(isset($_SESSION[$a])){return true;}else{return false;}}public static function delete($a){if(!session_id())@session_start();if(isset($_SESSION[$a])){unset($_SESSION[$a]);}}}?>
+
+/**
+ *
+ */
+class Session {
+
+	function __construct() {
+
+	}
+
+	public static function set($key, $value) {
+
+		if (!session_id())
+			@ session_start();
+
+		$_SESSION[$key] = $value;
+
+	}
+
+	public static function get($key) {
+
+		if (!session_id())
+			@ session_start();
+
+		if (isset($_SESSION[$key])) {
+			return $_SESSION[$key];
+		} else {
+			return "no existe la key de session: $key";
+		}
+	}
+
+	public static function valueFor($key) {
+
+		if (!session_id())
+			@ session_start();
+
+		if (isset($_SESSION[$key])) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	public static function delete($key) {
+
+		if (!session_id())
+			@ session_start();
+
+		if (isset($_SESSION[$key])) {
+			unset($_SESSION[$key]);
+		}
+	}
+
+}
+?>

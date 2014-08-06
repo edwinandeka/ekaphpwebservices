@@ -1,2 +1,50 @@
 <?php
- class Request{private $a;private $b;private $c;function __construct($d){$d=explode("/",$d);$d=array_filter($d);$e->_webservice=array_shift($d);$e->_action=array_shift($d);$e->_params=$d;if(!$e->_action)$e->_action="index";if(!isset($e->_params))$e->_params=array();}public function getWebService(){return $e->_webservice;}public function getAction(){return $e->_action;}public function getParams(){return $e->_params;}}?>
+/*
+ * @file  : class Request
+ *
+ * @autor : edwin_eka
+ * @email  : edwinandeka@gmail.com
+ *
+ * version 1.0
+ *
+ * fecha: 19 de abril de 2014
+ *
+ * 
+ */
+
+
+class Request {
+
+	private $_webservice;
+	private $_action;
+	private $_params;
+
+	function __construct($url) {
+		$url = explode("/", $url);
+		$url = array_filter($url);
+
+		$this -> _webservice = array_shift($url);
+		$this -> _action = array_shift($url);
+		$this -> _params = $url;
+
+		if (!$this -> _action) 
+			$this -> _action = "index";
+		
+		if (!isset($this -> _params)) 
+			$this -> _params = array();
+	}
+
+	public function getWebService() {
+		return $this -> _webservice;
+	}
+
+	public function getAction() {
+		return $this -> _action;
+	}
+
+	public function getParams() {
+		return $this -> _params;
+	}
+
+}
+?>

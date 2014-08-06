@@ -1,2 +1,61 @@
 <?php
- class Router{public static function init($a){$b=new Request($a);$c=$b->getWebService()."_webservice";$d=WEB_SERVICE_PATH.$c.".php";if(is_readable($d)){require_once $d;$c=ucfirst(strtolower($c));if(class_exists($c)){$e=$b->getAction();$f=$b->getParams();$g=new $c;if(is_callable(array($g,$e)))if(isset($f))call_user_func_array(array($g,$e),$f);else call_user_func(array($g,$e));else echo "ERROR: action no found>>> ".$e."in class >>> "+$c;}else echo "ERROR: class no found >>> ".$c." extend WebService{...} <br/>"."in file >>> ".$d;}else echo "ERROR: webservice no found >>> ".$d."<br/>"."in route >>> ".WEB_SERVICE_PATH;}}?>
+
+/*
+ * @file  : class Router
+ *
+ * @autor : edwin_eka
+ * @email  : edwinandeka@gmail.com
+ *
+ * version 1.0
+ *
+ * fecha: 19 de abril de 2014
+ *
+ * 
+ */
+
+class Router {
+
+	/**
+	* 
+	*  @description se encarga de redirigir la ruta al webservice y action indicada por la url
+	*
+	*	@params $url, es la ruta /webservice/action/params se pueden pasar varios params 
+	*				 así : ruta /webservice/action/params/params/params/params/params/params/.... 			
+	*/
+	public static function init($url) {
+		$request = new Request($url);
+
+		$webservice = $request -> getWebService() . "_webservice";
+		$routewebservice = WEB_SERVICE_PATH . $webservice . ".php";
+
+		//verifica si existe el webservice
+		if (is_readable($routewebservice)) {
+			//incluimos el webservice solicitado
+			require_once $routewebservice;
+			
+			//convertimos a nombre de  una clase
+			$webservice = ucfirst(strtolower($webservice));
+
+			//verifica si existe la clase para el webservice
+			if (class_exists($webservice)) {
+				$action = $request -> getAction();
+				$params = $request -> getParams();
+				
+				$objetWebService = new $webservice;
+				//se verifica si la action a sido declarada en el webservice
+				if (is_callable(array($objetWebService, $action))) 
+					if (isset($params)) 
+						call_user_func_array(array($objetWebService, $action), $params);
+					else 
+						call_user_func(array($objetWebService, $action));
+				else
+					echo "ERROR: action no found>>> " . $action . "in class >>> " + $webservice;
+
+			} else 
+				echo "ERROR: class no found >>> " . $webservice . " extend WebService{...} <br/>" . "in file >>> " . $routewebservice ;
+		} else 
+			echo "ERROR: webservice no found >>> " . $routewebservice . "<br/>" . "in route >>> " . WEB_SERVICE_PATH;
+	
+	}
+}
+?>
