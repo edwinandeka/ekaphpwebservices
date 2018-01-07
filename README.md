@@ -1,5 +1,5 @@
 # ekaphpwebservices
-Framework para el desarrollo de aplicaciones web, back-end y facilitar el acceso a los datos de Mysql sin tener que pensar tanto en SQL
+Framework para el desarrollo de microservicios web, back-end y facilitar el acceso a los datos de Mysql sin tener que pensar tanto en SQL
 
 #### Este proyecto fue escrito en php para comodidad de la puesta en produción. 
 
