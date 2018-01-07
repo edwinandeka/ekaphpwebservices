@@ -12,8 +12,8 @@ puedes crear tus modelos como en tus tablas ejemplo:
 
 | id        | name           | phone  |
 | ------------- |:-------------:| -----:|
-| 1      | Carlos |55555 |
-| 2      | Felipe      |   777777 |
+| 1      | Carlos Murcia |55555 |
+| 2      | Felipe  Herrera    |   777777 |
 
 
 ##### user.php
@@ -35,3 +35,30 @@ class User {
 ?>
 
 ```
+
+Entonces podras cambiar esos aburridos querys por objetos php asi:
+
+```php
+
+<?php 
+
+$userFelipe = Query::byId('user', 2);
+
+echo "Nombre: $userFelipe->name  Teléfono: $userFelipe->phone";
+
+?>
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
