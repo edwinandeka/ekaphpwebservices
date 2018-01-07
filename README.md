@@ -7,7 +7,7 @@ Carga este proyecto en tu servidor apache
 
 ## Servicios web
 
-Para crear y consumir servvicios web basta con lo siguiente, creamos un archivo con el nombre de nuestro grupo de micreservicios ejemplo `users_webservice.php` en el directorio `webservices` de este proyecto
+Para crear y consumir servicios web basta con lo siguiente, creamos un archivo con el nombre de nuestro grupo de microservicios ejemplo `users_webservice.php` en el directorio `webservices` de este proyecto
 
 
 ```php
@@ -26,7 +26,7 @@ class Users_webservice {
 
 ```
 Para consumir este servicio por ejemplo en JQuery haremos lo siguiente, creamos una petición post hacia el servidor donde tenemos alojado el proyecto en este caso con el nombre de `ekaphpwebservices` tu puedes renombrar este como lo desees
-para el ejemplo usaremos la url `http://localhost/ekaphpwebservices/index.php` siempre debemos dirigir la peticion al archivo `index.php` del proyecto, y agregar un parametro por `post` llamado `route` el cual le indica el nombre del paquete de servicios y el microservicio o ejecutar de la sigiente manera.
+para el ejemplo usaremos la url `http://localhost/ekaphpwebservices/index.php` siempre debemos dirigir la peticion al archivo `index.php` del proyecto, y agregar un parametro por `post` llamado `route` el cual le indica el nombre del grupo de servicios y el microservicio a ejecutar de la sigiente manera.
 
 ```javascript
 
