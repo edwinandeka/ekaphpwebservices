@@ -25,6 +25,18 @@ class Users_webservice {
 ?>
 
 ```
+Para consumir este servicio por ejemplo en JQuery haremos lo siguiente, creamos una petición post hacia el servidor donde tenemos alojado el proyecto en este caso con el nombre de ´ekaphpwebservices´ tu puedes renombrar este como lo desees
+para el ejemplo usaremos la url ´http://localhost/ekaphpwebservices/index.php´ siempre debemos dirigir la peticion al archivo ´index.php´ del proyecto, y agregar un parametro por ´post´ llamado ´route´ el cual le indica el nombre del paquete de servicios y el microservicio o ejecutar de la sigiente manera.
+
+```javascript
+
+$.post( "http://localhost/ekaphpwebservices/index.php", { route: "users/getAll" })
+.done(function( data ) {
+   console.log( "Data Loaded usuarios: ", data.users );
+});
+
+```
+
 
 
 ## Modelos y Mysql
